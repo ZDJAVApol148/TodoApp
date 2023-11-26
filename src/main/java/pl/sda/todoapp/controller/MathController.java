@@ -1,6 +1,7 @@
 package pl.sda.todoapp.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import pl.sda.todoapp.service.MathService;
 
@@ -13,15 +14,19 @@ public class MathController {
         this.mathService = mathService;
     }
 
-    // GET /api/math/add
-    @GetMapping("/api/math/add")
-    public int add() {
-        return mathService.add(5, 2);
+    // GET /api/math/add/{param1}/{param2}
+    @GetMapping("/api/math/add/{param1}/{param2}")
+    public int add(
+            @PathVariable(name = "param1") int a,
+            @PathVariable(name = "param2") int b) {
+        return mathService.add(a, b);
     }
 
-    // GET /api/math/subtract
-    @GetMapping("/api/math/subtract")
-    public int subtract() {
-        return mathService.subtract(5, 2);
+    // GET /api/math/subtract/{param1}/{param2}
+    @GetMapping("/api/math/subtract/{param1}/{param2}")
+    public int subtract(
+            @PathVariable(name = "param1") int a,
+            @PathVariable(name = "param2") int b) {
+        return mathService.subtract(a, b);
     }
 }
