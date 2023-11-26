@@ -1,5 +1,7 @@
-package pl.sda.todoapp.controller;
+package pl.sda.todoapp.controller.api;
 
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.sda.todoapp.Account;
 
@@ -32,7 +34,9 @@ public class HomeApiController {
     // { "name": "Jan Nowak", "number": "123456" }
     // { "tab": [{ "param1": 0, "param2": "String", "date": "2023-11-11" },{}]
     @PostMapping("/api/body")
-    public Account homeWithBody(@RequestBody Account account) {
-        return account;
+    public ResponseEntity<Account> homeWithBody(@RequestBody Account account) {
+        return ResponseEntity
+                .status(HttpStatusCode.valueOf(201))
+                .body(account);
     }
 }

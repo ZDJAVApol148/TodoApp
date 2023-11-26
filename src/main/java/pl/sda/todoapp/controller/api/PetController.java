@@ -1,5 +1,7 @@
-package pl.sda.todoapp.controller;
+package pl.sda.todoapp.controller.api;
 
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.sda.todoapp.model.Logger;
 
@@ -16,14 +18,21 @@ public class PetController {
 
     // create
     // POST localhost:8080/api/pet
+    // RESPONSE CODE: 201
     @PostMapping("/api/pet")
-    public String create() {
+    public ResponseEntity<String> create() {
         logger.log("post");
-        return "post";
+
+        // call external service
+
+        return ResponseEntity
+                .status(HttpStatusCode.valueOf(201))
+                .body("post");
     }
 
     // get
     // GET localhost:8080/api/pet
+    // RESPONSE CODE: 200
     // idempotence
     @GetMapping("/api/pet")
     public String get() {
