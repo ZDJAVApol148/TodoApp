@@ -23,10 +23,9 @@ public class HomeApiController {
     }
 
     // GET /api?number={number}&name={name}
-    // TODO: optional params
     @GetMapping("/api/params")
     public Account homeWithRequestParams(
-            @RequestParam(name = "number") String number,
+            @RequestParam(name = "number", required = false) String number,
             @RequestParam(name = "name") String name) {
         return new Account(number, name);
     }
