@@ -19,6 +19,11 @@ public class HomeController {
     }
 
     // GET todo/{id}
+    // http://localhost:8080/api/math/add
+    // GET/POST/PUT/PATCH/DELETE http://localhost:8080/api/math/add/5/2
+    // GET/POST/PUT/PATCH/DELETE http://localhost:8080/api/math/add?a=5&b=2
+    // POST/PUT/PATCH http://localhost:8080/api/math/add
+    // body: { a = b, b = 2 }
     // GET todo
     // POST todo
     // PUT/POST todo/{id}
