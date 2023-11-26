@@ -11,7 +11,14 @@ import java.util.List;
 public class TodoService {
 
     public List<Todo> getList() {
-        return new ArrayList<>();
+
+        List<Todo> result = new ArrayList<>();
+
+        for (int i = 1; i <= 20; i++) {
+            result.add(getById(i));
+        }
+
+        return result;
     }
 
     public Todo getById(int id) {
