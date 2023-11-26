@@ -30,7 +30,11 @@ public class TodoController {
 
     // GET todo by id
     @GetMapping("/todo/{id}")
-    public String getById(@PathVariable int id) {
+    public String getById(@PathVariable int id, Model model) {
+        Todo todo = todoService.getById(id);
+
+        model.addAttribute("todo", todo);
+
         return "todo";
     }
 

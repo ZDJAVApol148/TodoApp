@@ -9,7 +9,9 @@
 <h1>Todo List</h1>
 <table>
     <tr th:each="todo: ${todoList}">
-        <td th:text="${todo.id}"></td>
+        <td>
+            <a th:href="@{/todo/} + ${todo.id}" th:text="${todo.id}" />
+        </td>
         <td th:text="${todo.name}"></td>
         <td th:text="${todo.description}"></td>
         <td th:text="${todo.createdBy}"></td>
