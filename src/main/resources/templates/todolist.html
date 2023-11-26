@@ -19,5 +19,11 @@
 <ul>
    <li th:each="todo: ${todoList}" th:text="${todo.id}"></li>
 </ul>
+
+<div th:each="todo: ${todoList}" style="border: 2px solid red; margin: 2px">
+    <p th:text="${todo.id}"></p><br />
+    <p th:text="${todo.name}"></p>
+</div>
+
 </body>
 </html>
