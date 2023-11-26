@@ -1,4 +1,4 @@
-package pl.sda.todoapp.model;
+package pl.sda.todoapp.service;
 
 import org.springframework.stereotype.Service;
 
