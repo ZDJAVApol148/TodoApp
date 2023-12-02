@@ -1,5 +1,6 @@
 package pl.sda.todoapp.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +12,7 @@ import pl.sda.todoapp.service.TodoService;
 import java.util.List;
 
 @Controller
+@Slf4j
 public class TodoController {
 
     private final TodoService todoService;
@@ -48,7 +50,19 @@ public class TodoController {
     // POST todo
     @PostMapping("/todo")
     public String create(Todo todo) {
-        return null;
+
+        // TODO... Business logic
+
+        return "redirect:/todo";
+    }
+
+    @GetMapping("/todo/edit/{id}")
+    public String edit(@PathVariable int id, Model model) {
+        Todo todo = todoService.getById(id);
+
+        model.addAttribute("todo", todo);
+
+        return "create";
     }
 
     // PUT todo

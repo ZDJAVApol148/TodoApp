@@ -35,4 +35,17 @@ public class TodoService {
         return todo;
     }
 
+    public Todo saveOrUpdate(Todo todo) {
+        if (todo.getId() == 0) {
+            // create
+        }
+        else {
+            // update
+            Todo savedTodo = getById(todo.getId());
+            savedTodo.setName(todo.getName());
+        }
+
+        return todo;
+    }
+
 }

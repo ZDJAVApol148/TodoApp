@@ -9,6 +9,8 @@
 <body>
 <form method="post" th:action="@{/todo}" th:object="${todo}">
 
+    <input type="hidden" name="id" th:value="${todo.id}">
+
     Todo name:
     <input type="text" name="name" th:value="${todo.name}">
 
