@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" th:action="@{/todo}" th:object="${todo}">
+
+    Todo name:
+    <input type="text" name="name" th:value="${todo.name}">
+
+    Todo description:
+    <input type="text" name="description" th:value="${todo.description}">
+
+    Created by:
+    <input type="text" name="createdBy" th:value="${todo.createdBy}">
+
+    Valid date:
+    <input type="date" name="validDate" th:value="${todo.validDate}">
+
+    <input type="submit" value="Save">
+</form>
+</body>
+</html>

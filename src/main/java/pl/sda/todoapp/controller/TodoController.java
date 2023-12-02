@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import pl.sda.todoapp.model.Todo;
 import pl.sda.todoapp.service.TodoService;
 
@@ -28,7 +29,7 @@ public class TodoController {
         return "todolist";
     }
 
-    // GET todo by id
+    // GET todo by id (idempotence)
     @GetMapping("/todo/{id}")
     public String getById(@PathVariable int id, Model model) {
         Todo todo = todoService.getById(id);
@@ -38,8 +39,15 @@ public class TodoController {
         return "todo";
     }
 
+    @GetMapping("/todo/new")
+    public String create(Model model) {
+        model.addAttribute("todo", new Todo());
+        return "create";
+    }
+
     // POST todo
-    public String create(Object todo) {
+    @PostMapping("/todo")
+    public String create(Todo todo) {
         return null;
     }
 

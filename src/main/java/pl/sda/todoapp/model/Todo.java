@@ -1,5 +1,7 @@
 package pl.sda.todoapp.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class Todo {
@@ -10,6 +12,7 @@ public class Todo {
     private String createdBy;
     private Date createDate;
     private Date updateDate;
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date validDate;
 
     public int getId() {
