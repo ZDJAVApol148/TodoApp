@@ -38,11 +38,13 @@ public class TodoService {
     public Todo saveOrUpdate(Todo todo) {
         if (todo.getId() == 0) {
             // create
+            // persistence
         }
         else {
             // update
             Todo savedTodo = getById(todo.getId());
             savedTodo.setName(todo.getName());
+            // persistence
         }
 
         return todo;
