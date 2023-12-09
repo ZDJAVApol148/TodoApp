@@ -1,7 +1,24 @@
 package pl.sda.todoapp.model.repository;
 
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+import pl.sda.todoapp.model.Todo;
+
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 
 @Repository
-public class TodoRepository {
+public interface TodoRepository extends CrudRepository<Todo, Integer> {
+
+    // findAll --> SELECT * FROM Todos
+    Optional<Todo> findByName(String name);
+
+    Optional<Todo> findByNameAndId(String name, int id);
+
+    List<Todo> findAllByCreateDateAfterOrderByCreateDate(Date after);
+
+    List<Todo> findAllByCreateDateBetween(Date first, Date second);
+
+    List<Todo> findAll();
 }

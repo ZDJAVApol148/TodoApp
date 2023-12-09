@@ -1,38 +1,35 @@
 package pl.sda.todoapp.service;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 import pl.sda.todoapp.model.Todo;
+import pl.sda.todoapp.model.repository.TodoRepository;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TodoService {
 
+    private final TodoRepository todoRepository;
+
+    public TodoService(TodoRepository todoRepository) {
+        this.todoRepository = todoRepository;
+    }
+
     public List<Todo> getList() {
-
-        List<Todo> result = new ArrayList<>();
-
-        for (int i = 1; i <= 20; i++) {
-            result.add(getById(i));
-        }
-
-        return result;
+        return todoRepository.findAll();
     }
 
     public Todo getById(int id) {
-        Todo todo = new Todo();
+        Optional<Todo> todoOptional = todoRepository.findById(id);
+        if (todoOptional.isPresent()) {
+            return todoOptional.get();
+        }
 
-        todo.setId(id);
-        todo.setDescription("Learn Spring");
-        todo.setName("Learn Spring");
-        todo.setCreateDate(new Date());
-        todo.setUpdateDate(new Date());
-        todo.setValidDate(new Date());
-        todo.setCreatedBy("Janusz Kowalski");
-
-        return todo;
+        throw new EntityNotFoundException();
     }
 
     public Todo saveOrUpdate(Todo todo) {
