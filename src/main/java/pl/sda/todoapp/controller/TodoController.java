@@ -51,10 +51,9 @@ public class TodoController {
     // POST todo
     @PostMapping("/todo")
     public String create(Todo todo) {
+        todoService.saveOrUpdate(todo);
 
-        // TODO... Business logic
-
-        return "redirect:/todo";
+        return "redirect:/todo"; // GET /todo
     }
 
     @GetMapping("/todo/edit/{id}")
