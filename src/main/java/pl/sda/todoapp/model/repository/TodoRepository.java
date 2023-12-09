@@ -1,5 +1,6 @@
 package pl.sda.todoapp.model.repository;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import pl.sda.todoapp.model.Todo;
@@ -21,4 +22,7 @@ public interface TodoRepository extends CrudRepository<Todo, Integer> {
     List<Todo> findAllByCreateDateBetween(Date first, Date second);
 
     List<Todo> findAll();
+
+    @Query("SELECT t FROM Todo t WHERE t.id = ?1 OR t.name = ?2")
+    Todo getSomeVeryExtraordinaryQuery(int id, String name);
 }
