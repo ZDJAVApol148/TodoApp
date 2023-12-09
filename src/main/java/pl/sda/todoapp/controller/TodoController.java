@@ -64,9 +64,9 @@ public class TodoController {
         return "create";
     }
 
-    // PUT todo
-    public String update(Object todo) {
-        return null;
-    }
+    // PUT todo is not needed because we use create method to update
+//    public String update(Object todo) {
+//        return null;
+//    }
 
 }
