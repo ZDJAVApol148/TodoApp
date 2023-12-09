@@ -5,8 +5,6 @@ import org.springframework.stereotype.Service;
 import pl.sda.todoapp.model.Todo;
 import pl.sda.todoapp.model.repository.TodoRepository;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,19 +30,7 @@ public class TodoService {
         throw new EntityNotFoundException();
     }
 
-    public Todo saveOrUpdate(Todo todo) {
-        if (todo.getId() == 0) {
-            // create
-            // persistence
-        }
-        else {
-            // update
-            Todo savedTodo = getById(todo.getId());
-            savedTodo.setName(todo.getName());
-            // persistence
-        }
-
-        return todo;
+    public void saveOrUpdate(Todo todo) {
+        todoRepository.save(todo);
     }
-
 }
