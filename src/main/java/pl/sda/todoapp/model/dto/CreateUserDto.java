@@ -1,18 +1,6 @@
-package pl.sda.todoapp.model;
+package pl.sda.todoapp.model.dto;
 
-import jakarta.persistence.*;
-import org.hibernate.annotations.CreationTimestamp;
-
-import java.util.Date;
-
-@Entity
-@Table(name = "Users")
-public class User {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
+public class CreateUserDto {
     private String username;
 
     private String email;
@@ -22,18 +10,7 @@ public class User {
     private String lastName;
 
     private String password;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @CreationTimestamp
-    private Date createDate;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
+    private String repeatPassword;
 
     public String getUsername() {
         return username;
@@ -67,19 +44,19 @@ public class User {
         this.lastName = lastName;
     }
 
-    public Date getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
-    }
-
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRepeatPassword() {
+        return repeatPassword;
+    }
+
+    public void setRepeatPassword(String repeatPassword) {
+        this.repeatPassword = repeatPassword;
     }
 }
