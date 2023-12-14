@@ -1,0 +1,23 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Todo Application</title>
+</head>
+<body>
+<h1>Logowanie</h1>
+<div th:if="${error}">
+    Logowanie nieudane. Sprawdź poprawność nazwy użytkownika i hasła.
+</div>
+<p>Jesteś nowy? Kliknij
+    <a th:href="@{/user/register}">tutaj</a>, aby się zarejestrować.</p>
+<!-- tag::thAction[] -->
+<form method="POST" th:action="@{/user/login}" id="loginForm">
+    <!-- end::thAction[] -->
+    <label for="username">Nazwa użytkownika: </label>
+    <input type="text" name="username" id="username" /><br/>
+    <label for="password">Hasło: </label>
+    <input type="password" name="password" id="password" /><br/>
+    <input type="submit" value="Zaloguj się"/>
+</form>
+</body>
+</html>
