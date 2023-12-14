@@ -10,8 +10,8 @@ public class TodoDto {
     private String name;
     private String description;
     private String createdBy;
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private Date validDate;
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private Date validDate = new Date();
 
     public int getId() {
         return id;
