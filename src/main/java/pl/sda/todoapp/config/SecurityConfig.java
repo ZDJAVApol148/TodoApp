@@ -49,7 +49,8 @@ public class SecurityConfig {
                         // .passwordParameter("pwd")
                         .permitAll())
                 .logout((logout) -> logout.permitAll())
-                .httpBasic(Customizer.withDefaults());
+                .httpBasic(Customizer.withDefaults())
+                .csrf((csrf) -> csrf.disable());
         return http.build();
     }
 }
