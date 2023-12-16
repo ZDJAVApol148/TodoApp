@@ -23,10 +23,11 @@ public class UserController {
         return "register";
     }
 
-    @GetMapping("/user/login")
-    public String login() {
-        return "login";
-    }
+    // // /user/login endpoint handle in WebConfig
+//    @GetMapping("/user/login")
+//    public String login() {
+//        return "login";
+//    }
 
     // POST /user/register
     @PostMapping("/user/register")

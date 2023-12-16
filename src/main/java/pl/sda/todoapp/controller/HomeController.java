@@ -13,8 +13,9 @@ public class HomeController {
         return "Hello, World!";
     }
 
-    @GetMapping("/html")
-    public String helloWorldFromHtml() {
-        return "helloworld";
-    }
+    // /html endpoint handle in WebConfig
+//    @GetMapping("/html")
+//    public String helloWorldFromHtml() {
+//        return "helloworld";
+//    }
 }
