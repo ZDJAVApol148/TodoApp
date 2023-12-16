@@ -58,12 +58,15 @@ public class SecurityConfig {
                         .requestMatchers("/", "/user/register", "/h2-console/**").permitAll()
                         // .requestMatchers(HttpMethod.GET, "/api/todo", "/api/todo/**").permitAll()
                         // .requestMatchers(HttpMethod.POST, "/api/todo", "/api/todo/**").permitAll()
+                        .requestMatchers("/error").permitAll()
                         .requestMatchers("/admin").hasAnyRole("ADMIN")
                         .anyRequest().authenticated())
                 .formLogin((form) -> form
                         .loginPage("/user/login")
                         // .usernameParameter("usr")
                         // .passwordParameter("pwd")
+                        .successForwardUrl("/todo")
+                        .failureForwardUrl("/error")
                         .permitAll())
                 .logout((logout) -> logout
                         .logoutUrl("/")
