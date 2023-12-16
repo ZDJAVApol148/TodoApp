@@ -11,6 +11,7 @@
 </head>
 <body>
 <h1>Todo List</h1>
+<h2>Hello <p th:text="${username}"/> <p th:text="${email}" /> </h2>
 <table class="table">
     <tr th:each="todo: ${todoList}">
         <td>

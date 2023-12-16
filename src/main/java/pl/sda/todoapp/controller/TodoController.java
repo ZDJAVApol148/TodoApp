@@ -1,11 +1,15 @@
 package pl.sda.todoapp.controller;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import pl.sda.todoapp.model.dto.CustomUserDetails;
 import pl.sda.todoapp.model.dto.TodoDto;
 import pl.sda.todoapp.service.TodoService;
 
@@ -26,7 +30,14 @@ public class TodoController {
     public String getList(Model model) {
         List<TodoDto> todos = todoService.getList();
 
+        Authentication authentication =
+                SecurityContextHolder.getContext().getAuthentication();
+
+        CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+
         model.addAttribute("todoList", todos);
+        model.addAttribute("username", userDetails.getUsername());
+        model.addAttribute("email", userDetails.getEmail());
 
         return "todolist";
     }

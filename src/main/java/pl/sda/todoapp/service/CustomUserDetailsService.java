@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import pl.sda.todoapp.model.User;
+import pl.sda.todoapp.model.dto.CustomUserDetails;
 import pl.sda.todoapp.model.repository.UserRepository;
 
 import java.util.Collection;
@@ -31,54 +32,5 @@ public class CustomUserDetailsService implements UserDetailsService {
         }
 
         return new CustomUserDetails(userOptional.get());
-    }
-
-    private static class CustomUserDetails implements UserDetails {
-
-        private final User user;
-
-        private CustomUserDetails(User user) {
-            this.user = user;
-        }
-
-        @Override
-        public Collection<? extends GrantedAuthority> getAuthorities() {
-            return Collections.unmodifiableCollection(
-                    AuthorityUtils.createAuthorityList("ROLE_USER"));
-        }
-
-        @Override
-        public String getPassword() {
-            return user.getPassword();
-        }
-
-        @Override
-        public String getUsername() {
-            return user.getUsername();
-        }
-
-        @Override
-        public boolean isAccountNonExpired() {
-            // if (user.getExpiryDate() < new Date()) { return false; }
-            return true;
-        }
-
-        @Override
-        public boolean isAccountNonLocked() {
-            // if (user.isBanned()) { return false; }
-            return true;
-        }
-
-        @Override
-        public boolean isCredentialsNonExpired() {
-            // if (user.getPasswordExpiryDate() < new Date()) { return false; }
-            return true;
-        }
-
-        @Override
-        public boolean isEnabled() {
-            // if (!user.isEnabled()) { return false; }
-            return true;
-        }
     }
 }
