@@ -1,5 +1,8 @@
 package pl.sda.todoapp.controller.api;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +21,15 @@ public class TodoRestController {
         this.todoService = todoService;
     }
 
+    @Operation(
+            summary = "Gets all todos",
+            description = "gets all todos for logged in user"
+    )
+    @ApiResponses(
+            value = {
+                    @ApiResponse(responseCode = "200", description = "successful operation")
+            }
+    )
     @GetMapping("/api/todo")
     public List<TodoDto> getList() {
         List<TodoDto> todos = todoService.getList();

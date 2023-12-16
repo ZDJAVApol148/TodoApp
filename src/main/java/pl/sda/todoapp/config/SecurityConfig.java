@@ -59,6 +59,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/api/todo", "/api/todo/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/todo", "/api/todo/**").permitAll()
                         .requestMatchers("/error").permitAll()
+                        .requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll()
                         .requestMatchers("/admin").hasAnyRole("ADMIN")
                         .anyRequest().authenticated())
                 .formLogin((form) -> form
