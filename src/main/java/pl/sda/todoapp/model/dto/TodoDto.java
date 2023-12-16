@@ -11,7 +11,7 @@ public class TodoDto {
     private String description;
     private String createdBy;
     @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private Date validDate;
+    private Date validDate = new Date();
 
     public int getId() {
         return id;

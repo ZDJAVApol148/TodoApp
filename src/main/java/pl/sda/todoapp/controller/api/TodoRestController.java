@@ -20,13 +20,13 @@ public class TodoRestController {
         this.todoService = todoService;
     }
 
-    @GetMapping("/todo")
+    @GetMapping("/api/todo")
     public List<TodoDto> getList() {
         List<TodoDto> todos = todoService.getList();
         return todos;
     }
 
-    @PostMapping("/todo")
+    @PostMapping("/api/todo")
     public ResponseEntity<String> create(@RequestBody TodoDto todo) {
         todoService.saveOrUpdate(todo);
 
