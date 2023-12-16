@@ -23,6 +23,11 @@ public class UserController {
         return "register";
     }
 
+    @GetMapping("/user/login")
+    public String login() {
+        return "login";
+    }
+
     // POST /user/register
     @PostMapping("/user/register")
     public String register(CreateUserDto userDto) {
