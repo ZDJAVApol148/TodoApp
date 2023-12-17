@@ -1,12 +1,16 @@
 package pl.sda.todoapp.controller.api;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pl.sda.todoapp.controller.PetControllerInterface;
 import pl.sda.todoapp.model.Logger;
 
 @RestController
-public class PetController {
+public class PetController implements PetControllerInterface {
 
     // new PetController(new Logger())
 

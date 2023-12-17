@@ -55,6 +55,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
+                        .requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll()
                         .requestMatchers("/", "/user/register", "/h2-console/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/todo", "/api/todo/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/todo", "/api/todo/**").permitAll()
