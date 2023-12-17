@@ -30,6 +30,15 @@ public class DataLoader implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
+        User jan = new User();
+        jan.setUsername("jan");
+        jan.setPassword(passwordEncoder.encode("jan"));
+        jan.setEmail("jan@op.pl");
+        jan.setFirstName("Jan");
+        jan.setLastName("Nowak");
+
+        userRepository.save(jan);
+
         Date dt = new Date();
         Calendar c = Calendar.getInstance();
         c.setTime(dt);
@@ -39,19 +48,10 @@ public class DataLoader implements ApplicationRunner {
             Todo todo = new Todo();
             todo.setName("Todo task number " + i);
             todo.setDescription("Todo task number " + i + " description");
-            todo.setCreatedBy("John Doe");
+            todo.setCreatedBy(jan);
             todo.setValidDate(c.getTime());
 
             todoRepository.save(todo);
         }
-
-        User jan = new User();
-        jan.setUsername("jan");
-        jan.setPassword(passwordEncoder.encode("jan"));
-        jan.setEmail("jan@op.pl");
-        jan.setFirstName("Jan");
-        jan.setLastName("Nowak");
-
-        userRepository.save(jan);
     }
 }

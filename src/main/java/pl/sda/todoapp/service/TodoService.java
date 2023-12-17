@@ -1,11 +1,16 @@
 package pl.sda.todoapp.service;
 
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import pl.sda.todoapp.model.Todo;
 import pl.sda.todoapp.model.TodoMapper;
+import pl.sda.todoapp.model.User;
+import pl.sda.todoapp.model.dto.CustomUserDetails;
 import pl.sda.todoapp.model.dto.TodoDto;
 import pl.sda.todoapp.model.repository.TodoRepository;
+import pl.sda.todoapp.model.repository.UserRepository;
 
 import java.util.Date;
 import java.util.List;
@@ -16,13 +21,24 @@ public class TodoService {
 
     private final TodoRepository todoRepository;
 
-    public TodoService(TodoRepository todoRepository) {
+    private final UserRepository userRepository;
+
+    public TodoService(TodoRepository todoRepository, UserRepository userRepository) {
         this.todoRepository = todoRepository;
+        this.userRepository = userRepository;
     }
 
     public List<TodoDto> getList() {
+
+        CustomUserDetails userDetails = getCurrentUser();
+
+        Optional<User> user = userRepository.findById(userDetails.getId());
+        if (user.isEmpty()) {
+            // TODO: throw and handle an exception
+        }
+
         // 1) get from db
-        List<Todo> todos = todoRepository.findAll();
+        List<Todo> todos = todoRepository.findAllByCreatedBy(user.get());
 
         // 2) map entities to dtos
         List<TodoDto> dtos = TodoMapper.mapEntityListToDtoList(todos);
@@ -67,6 +83,18 @@ public class TodoService {
             todo.setCreateDate(new Date());
         }*/
 
+        CustomUserDetails userDetails = getCurrentUser();
+
+        Optional<User> user = userRepository.findById(userDetails.getId());
+        user.ifPresent(todo::setCreatedBy);
+
+        // TODO: throw an exception - user not found
+
         todoRepository.save(todo);
+    }
+
+    private CustomUserDetails getCurrentUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return (CustomUserDetails) authentication.getPrincipal();
     }
 }

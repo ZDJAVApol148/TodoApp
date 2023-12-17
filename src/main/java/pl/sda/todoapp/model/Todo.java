@@ -16,7 +16,10 @@ public class Todo {
     private int id;
     private String name;
     private String description;
-    private String createdBy;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User createdBy;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
@@ -52,11 +55,11 @@ public class Todo {
         this.description = description;
     }
 
-    public String getCreatedBy() {
+    public User getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(String createdBy) {
+    public void setCreatedBy(User createdBy) {
         this.createdBy = createdBy;
     }
 

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "Users")
@@ -22,6 +23,9 @@ public class User {
     private String lastName;
 
     private String password;
+
+    @OneToMany(mappedBy = "createdBy")
+    private List<Todo> todos;
 
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
@@ -81,5 +85,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Todo> getTodos() {
+        return todos;
+    }
+
+    public void setTodos(List<Todo> todos) {
+        this.todos = todos;
     }
 }

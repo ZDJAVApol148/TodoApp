@@ -13,7 +13,7 @@ public class TodoMapper {
         dto.setName(todo.getName());
         dto.setDescription(todo.getDescription());
         dto.setValidDate(todo.getValidDate());
-        dto.setCreatedBy(todo.getCreatedBy());
+        dto.setCreatedBy(todo.getCreatedBy().getFirstName() + " " + todo.getCreatedBy().getLastName());
 
         return dto;
     }
@@ -24,7 +24,7 @@ public class TodoMapper {
         todo.setName(dto.getName());
         todo.setDescription(dto.getDescription());
         todo.setValidDate(dto.getValidDate());
-        todo.setCreatedBy(dto.getCreatedBy());
+        // todo.setCreatedBy(dto.getCreatedBy());
 
         return todo;
     }
